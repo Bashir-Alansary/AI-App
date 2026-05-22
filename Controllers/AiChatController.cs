@@ -19,7 +19,7 @@ namespace AI_App.Controllers
 
         // Sends a prompt to OpenAI Responses API using direct HttpClient call and returns the raw response
         [HttpPost]
-        public async Task<string> API([FromForm] string Prompt)
+        public async Task<string> GenerateUsingHttpClient([FromForm] string Prompt)
         {
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", "Bearer " + _configuration["OpenAI:ApiKey"]);
