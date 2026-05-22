@@ -10,6 +10,14 @@ namespace AI_App
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    p => p.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+            });
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
@@ -21,6 +29,8 @@ namespace AI_App
                 app.MapOpenApi();
             }
 
+            app.UseCors("AllowAll");
+            app.UseStaticFiles();
             app.UseAuthorization();
 
 
